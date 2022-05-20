@@ -2,6 +2,7 @@ require('dotenv').config()
 var express = require('express')
 var app = express()
 var cors = require('cors')
+const path = require('path')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 const { Schema } = mongoose
@@ -21,12 +22,11 @@ app.use('/api/shorturl', bodyParser.urlencoded({ extended: false }))
 
 // Basic Configuration
 app.use(cors())
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render(path.join(__dirname + '/views/index.ejs'))
 })
-
 // Your first API endpoint
 app.post('/api/shorturl', (req, res) => {
   if (!req.body.url.match(/http/gi) || !req.body.url.match(/\.\w{3,}/gi)) {

@@ -18,6 +18,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@vercel/node": "^1.15.3",
     "nodemon": "^2.0.4"
   }
 }
